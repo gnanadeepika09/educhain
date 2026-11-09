@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Hardhat/Blockchain
+blockchain/artifacts/
+blockchain/cache/
+blockchain/node_modules/
+blockchain/coverage/
+blockchain/typechain-types/
+deployment.json
+
+# Client build
+client/dist/
+client/node_modules/
+client/.vite/
+
+# Server
+server/node_modules/
+server/uploads/*
+!server/uploads/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

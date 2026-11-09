@@ -1,0 +1,82 @@
+name: EduChain CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  # Backend Tests
+  backend:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install Dependencies
+      run: |
+        cd server
+        npm ci
+        
+    - name: Check for Syntax Errors
+      run: |
+        cd server
+        node --check server.js
+        
+  # Frontend Tests
+  frontend:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install Dependencies
+      run: |
+        cd client
+        npm ci
+        
+    - name: Build Frontend
+      run: |
+        cd client
+        npm run build
+      env:
+        VITE_API_BASE_URL: http://localhost:5000/api
+        VITE_CONTRACT_ADDRESS: 0x0000000000000000000000000000000000000000
+        VITE_GANACHE_RPC_URL: http://127.0.0.1:7545
+        VITE_CHAIN_ID: 1337
+        
+  # Smart Contract Tests
+  blockchain:
+    name: Smart Contract Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install Dependencies
+      run: |
+        cd blockchain
+        npm ci
+        
+    - name: Compile Contracts
+      run: |
+        cd blockchain
+        npx hardhat compile

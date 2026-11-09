@@ -1,0 +1,23 @@
+{
+  "name": "educhain-blockchain",
+  "version": "1.0.0",
+  "description": "EduChain smart contracts - Hardhat project",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "deploy:ganache": "npx hardhat run scripts/deploy.js --network ganache",
+    "deploy:local": "npx hardhat run scripts/deploy.js --network hardhat",
+    "clean": "npx hardhat clean",
+    "test": "npx hardhat test"
+  },
+  "keywords": [
+    "solidity",
+    "hardhat",
+    "ethereum",
+    "education"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.16"
+  }
+}
